@@ -10,13 +10,14 @@ import org.testng.annotations.Test;
 
 import static java.lang.Thread.sleep;
 
-public class LinkedinLoginTest {
-    WebDriver driver;
+public class LinkedinLoginTest extends LinkedinBasePage {
+    LinkedinLoginPage linkedinLoginPage;
 
     @BeforeMethod
     public void beforeMethod() {
         driver = new ChromeDriver();
         driver.get("https://www.linkedin.com/");
+        linkedinLoginPage = new LinkedinLoginPage(driver);
     }
 
     @AfterMethod
@@ -41,22 +42,36 @@ public class LinkedinLoginTest {
         //click on "Sign in" button.
         //verify Home page is displayed.
 
-       LinkedinLoginPage linkedinLoginPage = new LinkedinLoginPage(driver);
-
         Assert.assertTrue(linkedinLoginPage.isPageLoaded(), "Login page is not loaded.");
         LinkedinHomePage linkedinHomePage = linkedinLoginPage.login(userEmail, userPassword);
 
         Assert.assertTrue(linkedinHomePage.isPageLoaded(), "Home page is not loaded.");
     }
+    @DataProvider
+    public Object[][] invalidDataProvider() {
+        return new Object[][]{
+                { "a@b.c", "wrong", "Please enter a valid email address.", "The password you provided must have at least 6 characters."},
+        };
+    }
 
-    @Test
+    @Test(dataProvider = "invalidDataProvider")
+    public void negativeLoginTest(String userEmail, String userPassword, String userEmailError, String userPasswordError) {
+        Assert.assertTrue(linkedinLoginPage.isPageLoaded(), "Login page is not loaded.");
+        LinkedinLoginSubmitPage linkedinLoginSubmitPage = linkedinLoginPage.login(userEmail, userPassword);
+
+        Assert.assertTrue(linkedinLoginSubmitPage.isPageLoaded(), "LoginSubmitPage is not loaded.");
+        Assert.assertEquals(linkedinLoginSubmitPage.getAlertMessageText(),"There were one or more errors in your submission. " +
+                "Please correct the marked fields below.", "Alert message text is wrong." );
+        Assert.assertEquals(linkedinLoginSubmitPage.getUserEmailAlertText(), "Please enter a valid email address.",
+                "userEmail alert text is wrong");
+        Assert.assertEquals(linkedinLoginSubmitPage.getUserPasswordAlertText(), "The password you provided must have at least 6 characters.",
+                "userPassword alert text is wrong");
+
+    }
+   /* @Test
     public void negativeLoginTest() throws InterruptedException {
         WebDriver driver = new ChromeDriver();
         driver.get("https://www.linkedin.com/");
-
-        WebElement emailField = driver.findElement(By.id("login-email"));
-        WebElement passwordField = driver.findElement(By.id("login-password"));
-        WebElement signInButton = driver.findElement(By.id("login-submit"));
 
         emailField.sendKeys("a@b.c");
         passwordField.sendKeys("wrong");
@@ -73,7 +88,7 @@ public class LinkedinLoginTest {
         WebElement alertMessage = driver.findElement(By.xpath("//div[@id='control_gen_1']"));
         Assert.assertEquals(alertMessage.getText(), "There were one or more errors in your submission. Please correct the marked fields below.",
                 "Alert message is wrong");
-    }
+    }*/
 
     @Test
     public void invalidPassword() {

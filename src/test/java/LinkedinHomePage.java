@@ -2,8 +2,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class LinkedinHomePage {
-    private WebDriver driver;
+public class LinkedinHomePage extends LinkedinBasePage {
     private WebElement profileNavItem;
 
     public LinkedinHomePage(WebDriver driver) {
@@ -13,14 +12,6 @@ public class LinkedinHomePage {
 
     private void initElements() {
         profileNavItem = driver.findElement(By.xpath("//li[@id='profile-nav-item']"));
-    }
-
-    public String getCurrentUrl() {
-        return driver.getCurrentUrl();
-    }
-
-    public String getCurrentTitle() {
-        return driver.getTitle();
     }
 
     public boolean isPageLoaded() {
