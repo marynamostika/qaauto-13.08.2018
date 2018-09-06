@@ -26,7 +26,7 @@ public class LinkedinLoginPage extends LinkedinBasePage{
       passwordField.sendKeys(userPassword);
       signInButton.click();
       try {
-          sleep(3000);
+          sleep(5000);
       } catch (InterruptedException e) {
           e.printStackTrace();
       }
@@ -40,10 +40,10 @@ public class LinkedinLoginPage extends LinkedinBasePage{
           return (T) this;
       }
   }
-
   public boolean isPageLoaded() {
       return getCurrentUrl().equals("https://www.linkedin.com/")
               && getCurrentTitle().equals("LinkedIn: Log In or Sign Up")
               && signInButton.isDisplayed();
   }
+
 }
