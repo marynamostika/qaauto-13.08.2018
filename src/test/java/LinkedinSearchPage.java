@@ -1,53 +1,41 @@
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LinkedinSearchPage extends LinkedinBasePage {
+
+    @FindBy(xpath = "//ul[@class='search-results__list list-style-none']")
     private WebElement resultForSearch;
 
+    @FindBy(xpath = "//li[contains(@class,'search-result__occluded-item')]")
+    private List<WebElement> searchResults;
 
     public LinkedinSearchPage(WebDriver driver) {
         this.driver = driver;
-        initElements();
-    }
-
-    private void initElements() {
-        resultForSearch = driver.findElement(By.xpath("//ul[@class='search-results__list list-style-none']"));
+        PageFactory.initElements(driver, this);
     }
 
     public boolean isPageLoaded() {
-        return getCurrentUrl().equals("https://www.linkedin.com/search/results/index/?keywords=hr&origin=GLOBAL_SEARCH_HEADER")
-                && getCurrentTitle().contains("hr")
+        return getCurrentUrl().contains("search/results/")
+                && getCurrentTitle().contains("| Search | LinkedIn")
                 && resultForSearch.isDisplayed();
     }
-    public boolean isNumberSearchResultsCorrect(int expectedResult) {
-        List<WebElement> searchResults =driver.findElements(By.xpath("//li[@class[contains(.,'search-result search-result__occluded-item')]]"));
-        return searchResults.size()== expectedResult;
-    }
-    public void searchTerm() {
-        WebElement searchResults = driver.findElement(By.xpath("//ul[@class='search-results__list list-style-none']"));
-        List<WebElement>searchResult =searchResults.findElements(By.xpath("//li[@class[contains(.,'search-result search-result__occluded-item')]]"));
-        System.out.println(searchResult.size());
-        for(int i=0; i<searchResult.size(); i++){
-            System.out.println(searchResult.get(i).getText().toLowerCase().contains("hr"));
-        }
+    public int getSearchResultsNumber() {
+        return searchResults.size();
     }
 
-   /* public void searchTerm() {
-        List<WebElement> searchResults =driver.findElements(By.xpath("//li[@class[contains(.,'search-result search-result__occluded-item')]]"));
+    public List<String> getSearchResultList() {
+        List<String>searchResultList = new ArrayList<String>();
         for (WebElement searchResult : searchResults) {
-            String searchResultText = searchResult.getText();
-            if (searchResultText.toLowerCase().contains("hr")) {
-                System.out.println("SearchTerm found.");
-            }
-            else {
-                System.out.println("SearchTerm not found.");
-            }
-            System.out.println(searchResultText);
+            ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", searchResult);
+            searchResultList.add(searchResult.getText());
         }
-    }*/
+            return searchResultList;
+    }
 }
