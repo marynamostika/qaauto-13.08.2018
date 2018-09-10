@@ -13,6 +13,12 @@ public class LinkedinHomePage extends LinkedinBasePage{
     @FindBy(xpath = "//input[@placeholder and @role='combobox']")
     private WebElement searchField;
 
+    @FindBy(xpath = "//li[@id='profile-nav-item']//li-icon")
+    private WebElement dropdownProfileLocator;
+
+    @FindBy(xpath = "//a[@data-control-name='nav.settings_signout']")
+    private WebElement signOutLocator;
+
     public LinkedinHomePage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
@@ -33,4 +39,6 @@ public class LinkedinHomePage extends LinkedinBasePage{
         }
         return new LinkedinSearchPage(driver);
     }
-    }
+
+
+}
