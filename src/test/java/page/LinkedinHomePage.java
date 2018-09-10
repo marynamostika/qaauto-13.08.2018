@@ -1,3 +1,5 @@
+package page;
+
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -39,6 +41,5 @@ public class LinkedinHomePage extends LinkedinBasePage{
         }
         return new LinkedinSearchPage(driver);
     }
-
 
 }

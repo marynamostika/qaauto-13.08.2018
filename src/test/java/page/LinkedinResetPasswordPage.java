@@ -1,3 +1,5 @@
+package page;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -29,14 +31,14 @@ public class LinkedinResetPasswordPage extends LinkedinBasePage{
                 && headerLocator.isDisplayed();
     }
 
-    public LinkedinChangedPasswordPage chooseNewPassword(String newPassword) {
+    public LinkedinChangedPasswordPage chooseNewPassword(String userPassword) {
         try {
             sleep(30000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        newPasswordField.sendKeys(newPassword);
-        retypePasswordField.sendKeys(newPassword);
+        newPasswordField.sendKeys(userPassword);
+        retypePasswordField.sendKeys(userPassword);
         submitButton.click();
         return new LinkedinChangedPasswordPage(driver);
     }
