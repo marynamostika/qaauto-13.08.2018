@@ -16,6 +16,20 @@ public class LinkedinLoginTest extends LinkedinBaseTest {
         };
     }
 
+    /**
+     * Verify succesfull user login
+     *
+     * Preconditions:
+     *-Open new browser
+     *-Navigate to linkedin.com
+     *
+     * Scenario
+     * -Verify that login page is loaded.
+     * -Enter user email.
+     * -Enter user password.
+     * -Click on "Sign in" button.
+     * -Verify Home page is displayed.
+     */
     @Test(dataProvider = "validDataProvider")
     public void succesfullLoginTest(String userEmail, String userPassword) throws InterruptedException {
         //navigate to linkedin.com

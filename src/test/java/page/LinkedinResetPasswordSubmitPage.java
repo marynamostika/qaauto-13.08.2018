@@ -35,11 +35,11 @@ public class LinkedinResetPasswordSubmitPage extends LinkedinBasePage {
         String begin = "To change your LinkedIn password, click <a href=\"";
         String end = "\" style";
         message = gMailService.waitMessage(messageSubject, messageTo, messageFrom, 400);
-        //System.out.println("Content: " + message);
+        System.out.println("Content: " + message);
 
         String messagedLink = StringUtils.substringBetween(message, begin, end);
         String passwordLink = messagedLink.replace("&amp;","&");
-        //System.out.println(passwordLink);
+        System.out.println(passwordLink);
 
         driver.get(passwordLink);
 
