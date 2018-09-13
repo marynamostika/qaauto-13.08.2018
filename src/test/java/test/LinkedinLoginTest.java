@@ -11,8 +11,8 @@ public class LinkedinLoginTest extends LinkedinBaseTest {
     @DataProvider
     public Object[][] validDataProvider() {
         return new Object[][]{
-                {"testmostika@gmail.com", "testpassword"},
-                {"testmostika@gmail.com", "testpassword"}
+                {"testmostika@gmail.com", "testpassword$"},
+                {"testmostika@gmail.com", "testpassword$"}
         };
     }
 

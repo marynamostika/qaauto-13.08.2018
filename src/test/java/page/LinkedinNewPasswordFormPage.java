@@ -7,10 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 
 import static java.lang.Thread.sleep;
 
-public class LinkedinResetPasswordPage extends LinkedinBasePage{
-    @FindBy(xpath = "//header[text()='We just emailed you a link']")
-    private WebElement headerLocator;
-
+public class LinkedinNewPasswordFormPage extends LinkedinBasePage{
     @FindBy(xpath = "//input[@name='newPassword']")
     private WebElement newPasswordField;
 
@@ -20,20 +17,20 @@ public class LinkedinResetPasswordPage extends LinkedinBasePage{
     @FindBy(xpath = "//button[@type='submit']")
     private WebElement submitButton;
 
-    public LinkedinResetPasswordPage(WebDriver driver) {
+    public LinkedinNewPasswordFormPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
 
     public boolean isPageLoaded() {
-        return getCurrentUrl().contains("password-reset-submit")
-                && getCurrentTitle().contains("for reset password link.")
-                && headerLocator.isDisplayed();
+        return getCurrentUrl().contains("password-reset")
+                && getCurrentTitle().contains("Reset Your Password | LinkedIn")
+                && submitButton.isDisplayed();
     }
 
     public LinkedinChangedPasswordPage chooseNewPassword(String userPassword) {
         try {
-            sleep(30000);
+            sleep(300);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
