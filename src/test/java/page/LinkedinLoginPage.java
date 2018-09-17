@@ -5,8 +5,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import static java.lang.Thread.sleep;
-
 /**
  * LinkedinLogin Page Object class.
  */
@@ -46,11 +44,6 @@ public class LinkedinLoginPage extends LinkedinBasePage{
       emailField.sendKeys(userEmail);
       passwordField.sendKeys(userPassword);
       signInButton.click();
-      try {
-          sleep(3000);
-      } catch (InterruptedException e) {
-          e.printStackTrace();
-      }
       if (getCurrentUrl().contains("/feed")) {
          return (T) new LinkedinHomePage(driver);
       }
@@ -61,12 +54,23 @@ public class LinkedinLoginPage extends LinkedinBasePage{
           return (T) this;
       }
   }
+
+    /**
+     * Is LinkedinLoginPagepage loaded.
+     *
+     * @return current URL, Title, displayed signInButton.
+     */
   public boolean isPageLoaded() {
       return getCurrentUrl().equals("https://www.linkedin.com/")
               && getCurrentTitle().equals("LinkedIn: Log In or Sign Up")
               && signInButton.isDisplayed();
   }
 
+    /**
+     * Forgot password link.
+     *
+     * @return LinkedinForgotPasswordPage Page Object class.
+     */
     public LinkedinForgotPasswordPage forgotPasswordForm() {
       forgotPasswordLink.click();
       return new LinkedinForgotPasswordPage(driver);

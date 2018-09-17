@@ -6,20 +6,32 @@ import page.LinkedinSearchPage;
 
 import java.util.List;
 
+/**
+ * LinkedinSearchTest Page object class.
+ */
 public class LinkedinSearchTest extends LinkedinBaseTest {
 
-    /*- Open login page
-- Verify login page is loaded
-- Login with valid credentials
-- Verify home page is loaded
-- Search for 'hr' Searchterm
-- Verify Search page is loaded
-- Verify 10 results displayed on search page
-- Verify each result item contains searchterm*/
+    /**
+     * Search test.
+     *
+     * Precondition:
+     * -Open new browser.
+     * -Navigate to linkedin.com.
+     *
+     * Scenario:
+     * - Open login page.
+     * - Verify login page is loaded.
+     * - Login with valid credentials.
+     * - Verify home page is loaded.
+     * - Search for search term.
+     * - Verify Search page is loaded.
+     * - Verify 10 results displayed on search page.
+     * - Verify each result item contains search term.
+     */
     @Test
-    public void basiSsearchTest() {
+    public void basicSsearchTest() {
         String userEmail = "marynamostika@ukr.net";
-        String userPassword = "testpassword";
+        String userPassword = "testpassword$";
         String searchTerm = "hr";
 
         Assert.assertTrue(linkedinLoginPage.isPageLoaded(), "Login page is not loaded.");

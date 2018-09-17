@@ -7,11 +7,19 @@ import org.testng.annotations.BeforeMethod;
 import page.LinkedinHomePage;
 import page.LinkedinLoginPage;
 
+/**
+ * LinkedinBaseTest class.
+ */
 public class LinkedinBaseTest  {
     WebDriver driver;
     LinkedinLoginPage linkedinLoginPage;
-    LinkedinHomePage linkedinHomePage;
 
+    /**
+     * Before method.
+     *
+     * Open browser.
+     * Driver get "https://www.linkedin.com/".
+     */
     @BeforeMethod
     public void beforeMethod() {
         driver = new ChromeDriver();
@@ -19,6 +27,11 @@ public class LinkedinBaseTest  {
         linkedinLoginPage = new LinkedinLoginPage(driver);
     }
 
+    /**
+     * After method.
+     *
+     * Close browser.
+     */
     @AfterMethod
     public void afterMethod() {
         driver.quit();

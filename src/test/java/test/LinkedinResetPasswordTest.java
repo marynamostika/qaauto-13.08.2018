@@ -4,7 +4,33 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import page.*;
 
+/**
+ * LinkedinResetPasswordTest Page Object class.
+ */
 public class LinkedinResetPasswordTest extends LinkedinBaseTest {
+    LinkedinHomePage linkedinHomePage;
+
+    /**
+     * Verify reset password.
+     *
+     * Preconditions:
+     * -Open new browser
+     * -Navigate to linkedin.com
+     *
+     * Scenario
+     * -Verify that login page is loaded.
+     * -Click forgot password link.
+     * -Verify that Forgot password page is loaded.
+     * -Connect to gMailService.
+     * -Enter user email.
+     * -Click findAccount button.
+     * -Navigate to link from email.
+     * -Verify that New password form page is loaded.
+     * -Choose new password.
+     * -Verify that Changed password page is loaded.
+     * -Click to back to Home page button.
+     * -Verify that Home Page is loaded.
+     */
     @Test
     public void resetPasswordTest() {
         String userEmail = "testmostika@gmail.com";
