@@ -1,7 +1,9 @@
 package test;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import page.LinkedinHomePage;
@@ -22,7 +24,8 @@ public class LinkedinBaseTest  {
      */
     @BeforeMethod
     public void beforeMethod() {
-        driver = new ChromeDriver();
+        WebDriverManager.firefoxdriver().setup();
+        driver = new FirefoxDriver();
         driver.get("https://www.linkedin.com/");
         linkedinLoginPage = new LinkedinLoginPage(driver);
     }
@@ -32,7 +35,7 @@ public class LinkedinBaseTest  {
      *
      * Close browser.
      */
-    @AfterMethod
+    @AfterMethod(alwaysRun = true)
     public void afterMethod() {
         driver.quit();
     }

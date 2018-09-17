@@ -1,5 +1,6 @@
 package page;
 
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -16,7 +17,7 @@ public class LinkedinLoginPage extends LinkedinBasePage{
   @FindBy(id = "login-password")
     private WebElement passwordField;
 
-  @FindBy(id = "login-submit")
+  @FindBy(id = "login-submitX")
     private WebElement signInButton;
 
   @FindBy(xpath = "//a[@class='link-forgot-password']")
@@ -30,6 +31,7 @@ public class LinkedinLoginPage extends LinkedinBasePage{
   public LinkedinLoginPage(WebDriver driver) {
       this.driver = driver;
       PageFactory.initElements(driver, this);
+      assertElementIsVisible(signInButton, 5, "Login Page is not loaded");
   }
 
     /**
@@ -44,10 +46,11 @@ public class LinkedinLoginPage extends LinkedinBasePage{
       emailField.sendKeys(userEmail);
       passwordField.sendKeys(userPassword);
       signInButton.click();
-      if (getCurrentUrl().contains("/feed")) {
+
+      if (isUrlContains("/feed", 5)) {
          return (T) new LinkedinHomePage(driver);
       }
-      if (getCurrentUrl().contains("/login-submit")) {
+      if (isUrlContains("/login-submit", 5)) {
           return (T) new LinkedinLoginSubmitPage(driver);
       }
       else {

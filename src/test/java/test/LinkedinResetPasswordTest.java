@@ -14,8 +14,8 @@ public class LinkedinResetPasswordTest extends LinkedinBaseTest {
      * Verify reset password.
      *
      * Preconditions:
-     * -Open new browser
-     * -Navigate to linkedin.com
+     * -Open new browser.
+     * -Navigate to linkedin.com.
      *
      * Scenario
      * -Verify that login page is loaded.
