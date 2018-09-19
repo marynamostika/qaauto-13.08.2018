@@ -47,25 +47,24 @@ public class LinkedinBasePage {
      */
     protected WebElement waitUntilElementVisible(WebElement webElement, int timeOutInSec) {
         WebDriverWait wait = new WebDriverWait(driver, timeOutInSec);
-       return wait.until(ExpectedConditions.visibilityOf(webElement));
+        return wait.until(ExpectedConditions.visibilityOf(webElement));
     }
-     protected Boolean isUrlContains(String partialUrl, int timeOutInSec) {
-         WebDriverWait wait = new WebDriverWait(driver, timeOutInSec);
 
-         try{
-             return wait.until(ExpectedConditions.urlContains(partialUrl));
-         } catch (TimeoutException e) {
-             return false;
-         }
-     }
+    protected boolean isUrlContains(String partialUrl, int timeOutInSec){
+        WebDriverWait wait = new WebDriverWait(driver, timeOutInSec);
+        try {
+            return wait.until(ExpectedConditions.urlContains(partialUrl));
+        } catch (TimeoutException e) {
+            return false;
+        }
+    }
 
-     protected void assertElementIsVisible (WebElement webelement, int timeOutInSec, String message) {
-         try {
-             waitUntilElementVisible(webelement, timeOutInSec);
-         } catch (TimeoutException e) {
-             throw new AssertionError(message);
-         }
-     }
-
+    protected void assertElementIsVisible(WebElement webElement, int timeOutInSec , String message) {
+        try {
+            waitUntilElementVisible(webElement, timeOutInSec);
+        } catch (TimeoutException e) {
+            throw new AssertionError(message);
+        }
+    }
 
 }

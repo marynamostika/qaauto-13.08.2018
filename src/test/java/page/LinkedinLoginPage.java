@@ -1,6 +1,5 @@
 package page;
 
-import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -17,7 +16,7 @@ public class LinkedinLoginPage extends LinkedinBasePage{
   @FindBy(id = "login-password")
     private WebElement passwordField;
 
-  @FindBy(id = "login-submitX")
+  @FindBy(id = "login-submit")
     private WebElement signInButton;
 
   @FindBy(xpath = "//a[@class='link-forgot-password']")

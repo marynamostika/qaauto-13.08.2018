@@ -29,12 +29,11 @@ public class LinkedinSearchTest extends LinkedinBaseTest {
      * - Verify each result item contains search term.
      */
     @Test
-    public void basicSsearchTest() {
+    public void basicSearchTest() {
         String userEmail = "marynamostika@ukr.net";
         String userPassword = "testpassword$";
         String searchTerm = "hr";
 
-        Assert.assertTrue(linkedinLoginPage.isPageLoaded(), "Login page is not loaded.");
         LinkedinHomePage linkedinHomePage = linkedinLoginPage.login(userEmail, userPassword);
 
         Assert.assertTrue(linkedinHomePage.isPageLoaded(), "Home page is not loaded.");
