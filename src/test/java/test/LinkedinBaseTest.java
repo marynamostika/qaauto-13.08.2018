@@ -18,7 +18,6 @@ public class LinkedinBaseTest {
     WebDriver driver;
     LinkedinLoginPage linkedinLoginPage;
 
-    //String browserName = "chrome";
 
     /**
      * Before method.

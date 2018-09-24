@@ -1,7 +1,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="Login Test Suite" verbose="1" >
-    <parameter name="browserName" value="Firefox"/>
+    <parameter name="browserName" value="Chrome"/>
 
     <test name="Positive" >
         <classes>
