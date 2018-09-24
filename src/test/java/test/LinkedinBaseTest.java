@@ -26,9 +26,10 @@ public class LinkedinBaseTest {
      * Open browser.
      * Driver get "https://www.linkedin.com/".
      */
-    @Parameters("browserName")
+    @Parameters({"browserName", "envUrl"})
     @BeforeMethod
-    public void beforeMethod(@Optional("chrome") String browserName) throws Exception {
+    public void beforeMethod(@Optional("chrome") String browserName,
+                             @Optional ("https://ua.linkedin.com/") String envUrl) throws Exception {
         switch (browserName.toLowerCase()) {
             case "firefox":
                 WebDriverManager.firefoxdriver().setup();
@@ -46,7 +47,7 @@ public class LinkedinBaseTest {
                 throw new Exception("Browser " + browserName + " is not supported");
         }
 
-        driver.get("https://www.linkedin.com/");
+        driver.get(envUrl);
         linkedinLoginPage = new LinkedinLoginPage(driver);
     }
 

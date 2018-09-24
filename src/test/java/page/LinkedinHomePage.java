@@ -30,7 +30,7 @@ public class LinkedinHomePage extends LinkedinBasePage{
     public LinkedinHomePage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
-        waitUntilElementVisible(searchField, 10);
+        waitUntilElementVisible(profileNavItem, 10);
     }
 
     /**

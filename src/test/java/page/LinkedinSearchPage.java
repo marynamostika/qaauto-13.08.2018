@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class LinkedinSearchPage extends LinkedinBasePage {
 
-    @FindBy(xpath = "//ul[@class='search-results__list list-style-none']")
+    @FindBy(xpath = "//li[contains(@class, 'search-result__occluded-item')]")
     private WebElement resultForSearch;
 
     @FindBy(xpath = "//li[contains(@class,'search-result__occluded-item')]")
