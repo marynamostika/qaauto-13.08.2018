@@ -28,7 +28,7 @@ public class LinkedinBaseTest {
     @Parameters({"browserName", "envUrl"})
     @BeforeMethod
     public void beforeMethod(@Optional("chrome") String browserName,
-                             @Optional ("https://ua.linkedin.com/") String envUrl) throws Exception {
+                             @Optional ("https://linkedin.com/") String envUrl) throws Exception {
         switch (browserName.toLowerCase()) {
             case "firefox":
                 WebDriverManager.firefoxdriver().setup();
